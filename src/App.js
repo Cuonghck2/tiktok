@@ -2,7 +2,7 @@
 function App() {
   return (
     <div style={{ margin: "0 auto", textAlign: "center" }}>
-      
+         <h1>Hello</h1>
     </div>
   );
 }
