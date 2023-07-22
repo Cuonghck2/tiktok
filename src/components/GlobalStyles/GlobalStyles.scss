@@ -4,10 +4,14 @@
 
 :root{
     --primary: #fe2c55;
+    --default-layouts-height: 60px;
+    --default-layouts-width: 1150px;
 }
 
 *{
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html{
@@ -18,4 +22,5 @@ body{
     font-family: 'Roboto', sans-serif;
     font-size: 1.5rem;
     line-height: 1.5;
+    text-rendering: optimizeSpeed;
 }
