@@ -7,7 +7,7 @@ import {DefaultLayouts} from '~/components/Layouts'
 function App() {
   return (
     <Router>
-      <div style={{ margin: "0 auto", textAlign: "center" }}>
+      <div>
             <Routes>
                {publicRoutes.map((route,index)=>{
                 let Layout = DefaultLayouts

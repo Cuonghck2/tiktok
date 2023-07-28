@@ -5,8 +5,8 @@
 }
 .container{
     width: var(--default-layouts-width);
+    padding: 0 var(--default-layout-horizontal-spacer);
     min-height: 1000px;
-    background-color: greenyellow;
     display: flex;
 
 }

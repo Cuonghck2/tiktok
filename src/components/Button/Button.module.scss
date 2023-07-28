@@ -1,0 +1,83 @@
+.wrapper{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    font-family: 'TiktokFont', sans-serif;
+    height: 36px;
+    min-width: 100px;
+    padding: 6px 8px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    user-select: none;
+
+    + .wrapper{
+        margin-left: 8px;
+    }
+
+    &.disable{
+        pointer-events: none;
+        opacity: 0.5;
+    }
+}
+
+//Button types
+.rounded{
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border-color: rgba(22, 24, 35, .12);
+    font-size: 1.4rem;
+
+    &:hover{
+        border-color: rgba(22, 24, 35, .2);
+        background-color: rgba(255, 255, 255, 1);
+    }
+}
+
+.primary{
+    background-color: var(--primary);
+    color: var(--white-color);
+     
+    &:hover{
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06),
+                         rgba(0, 0, 0, 0.06)),#FE2C55;
+        cursor: pointer;
+    }
+}
+
+.outline{
+   color: var(--primary);
+   border-color: var(--primary);
+   font-weight: 500;
+   &:hover{
+      background-color: #ffeef2;
+   }
+}
+
+.text{
+    color: var(--black-color);
+    font-weight: 700;
+    
+}
+
+
+
+//Button size
+.small{
+    min-width: 96px;
+    padding: 1px 12px;
+}
+
+.large{
+    min-width: 190px;
+    padding: 6px 8px;
+}
+
+//icon
+.icon{
+    display: inline-block;
+    margin-right: 8px;
+    width: 24px;
+    text-align: center;
+}
