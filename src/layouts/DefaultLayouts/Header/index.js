@@ -1,10 +1,6 @@
-import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleQuestion,
-  faCircleXmark,
-} from "@fortawesome/free-regular-svg-icons";
+import { faCircleQuestion } from "@fortawesome/free-regular-svg-icons";
 import {
   faCoins,
   faEarthAsia,
@@ -13,23 +9,21 @@ import {
   faKeyboard,
   faPlus,
   faRightToBracket,
-  faSearch,
-  faSpinner,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import HeadlessTippys from "@tippyjs/react/headless";
 import Tippy from "@tippyjs/react/";
-import 'tippy.js/dist/tippy.css';
+import "tippy.js/dist/tippy.css";
 
 import styles from "./Header.module.scss";
 import images from "~/assets/images";
-import { Wrapper as PopperWrapper } from "~/components/Popper";
-import AccountsItem from "~/components/AccountsItem";
+
 import Button from "~/components/Button";
 import Menu from "~/components/Popper/Menu";
 import { MailBox, MessageIcon } from "~/components/Icons";
 import Images from "~/components/Images";
-
+import Search from "../../Search";
+import { Link } from "react-router-dom";
+import config from "~/config";
 
 const cx = classNames.bind(styles);
 
@@ -83,75 +77,41 @@ const userMenu = [
     icon: <FontAwesomeIcon icon={faRightToBracket} />,
     title: "Đăng xuất",
     to: "/logout",
-    separate: true
+    separate: true,
   },
-]
-
+];
 
 function Header() {
-  const [searchResult, setSearchResult] = useState([]);
   const userCurrent = true;
-  useEffect(() => {
-    setTimeout(() => {
-      setSearchResult([]);
-    },[]);
-  });
   return (
     <header className={cx("wraper")}>
       <div className={cx("inner")}>
         <div className={cx("logo")}>
+          <Link to = {config.routes.home} className={cx('logo-link')}>
           <img src={images.logo} alt="" />
+          </Link>
         </div>
-        <HeadlessTippys
-          interactive
-          visible={searchResult.length > 0}
-          render={(attrs) => (
-            <div className={cx("search-result")} tabIndex="-1" {...attrs}>
-              <PopperWrapper>
-                <h4 className={cx("search-title")}>Accounts</h4>
-                <AccountsItem />
-                <AccountsItem />
-                <AccountsItem />
-              </PopperWrapper>
-            </div>
-          )}
-        >
-          <div className={cx("search")}>
-            <input placeholder="Tìm kiếm" spellCheck={false} />
-            <button className={cx("clear")}>
-              <FontAwesomeIcon icon={faCircleXmark} />
-            </button>
-            <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />
-            <button className={cx("search-btn")}>
-              <FontAwesomeIcon icon={faSearch} />
-            </button>
-          </div>
-        </HeadlessTippys>
+        
+        <Search />
 
         <div className={cx("action")}>
           {userCurrent ? (
             <>
-            <Button outline text icon={<FontAwesomeIcon icon={faPlus} />}>
+              <Button outline text icon={<FontAwesomeIcon icon={faPlus} />}>
                 Tải lên
               </Button>
-            <Tippy
-             content='Tin nhắn'
-             placement="bottom"
-            >
-              <button className={cx('actions-btn')}>
-                <MessageIcon className={cx('actions-btn-icon')}/>
-              </button>     
-            </Tippy>
+              <Tippy content="Tin nhắn" placement="bottom">
+                <button className={cx("actions-btn")}>
+                  <MessageIcon className={cx("actions-btn-icon")} />
+                </button>
+              </Tippy>
 
-            <Tippy
-              content='Hộp thư'
-              placement="bottom"
-            >
-               <button className={cx('actions-btn')}>
-                <MailBox className={cx('actions-btn-icon')} />
-                <sup className={cx('actions-mailbox_quanlity')}>5</sup>
-               </button>
-            </Tippy>
+              <Tippy content="Hộp thư" placement="bottom">
+                <button className={cx("actions-btn")}>
+                  <MailBox className={cx("actions-btn-icon")} />
+                  <sup className={cx("actions-mailbox_quanlity")}>5</sup>
+                </button>
+              </Tippy>
             </>
           ) : (
             <>
@@ -165,9 +125,10 @@ function Header() {
           <Menu items={userCurrent ? userMenu : MENU_ITEMS}>
             {userCurrent ? (
               <Images
-               src="https://wallpapers.com/images/hd/cute-profile-picture-d29aik4tc8ckfm9i.jpg"
-               className={cx("user-avatar")}
-               alt="user" />
+                src="https://wallpapers.com/images/hd/cute-profile-picture-d29aik4tc8ckfm9i.jpg"
+                className={cx("user-avatar")}
+                alt="user"
+              />
             ) : (
               <button className={cx("more-btn")}>
                 <FontAwesomeIcon icon={faEllipsisVertical} />

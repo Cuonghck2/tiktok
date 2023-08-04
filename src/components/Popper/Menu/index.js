@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classNames from "classnames/bind";
 import Tippy from "@tippyjs/react/headless";
 
@@ -27,6 +28,7 @@ function Menu({ children, items = [] }) {
               });
             }
           }}
+          
         />
       );
     });
@@ -38,6 +40,7 @@ function Menu({ children, items = [] }) {
       delay={[0, 700]}
       offset={[12,8]}
       placement="bottom-end"
+      hideOnClick = "false"
       render={(attrs) => (
         <div className={cx("menu-list")} tabIndex="-1" {...attrs}>
           <PopperWrapper className={cx("menu-popper")}>
@@ -53,7 +56,9 @@ function Menu({ children, items = [] }) {
                 }}
               />
             )}
+            <div className={cx('menu-body')}>
             {renderItem()}
+            </div>
           </PopperWrapper>
         </div>
       )}
@@ -64,4 +69,8 @@ function Menu({ children, items = [] }) {
   );
 }
 
+Menu.propTypes = {
+   items: PropTypes.array,
+   children: PropTypes.node.isRequired
+}
 export default Menu;
