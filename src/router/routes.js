@@ -30,7 +30,7 @@ const publicRoutes = [
         component: Search,
         layout: null
     }
-
+    
 ]
 
 const privateRoutes = [
